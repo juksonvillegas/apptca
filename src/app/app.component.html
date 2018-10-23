@@ -1,40 +1,148 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container-fluid ">
     <div class="row wrapper">
-        <aside class="col-12 col-md-4 col-lg-3 p-0 bg-dark menu">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark align-items-start d-md-block flex-row p-0">
-                <a class="navbar-brand" href="#">
-                    <img class="m-1 rounded" src="../assets/img/brand.png" width="30" height="30" alt="">
-                    <span class="p-1">Moda Smartphone</span>
-                </a>
-                <a href class="navbar-toggler" data-toggle="collapse" data-target=".sidebar">
-                    <span class="navbar-toggler-icon"></span>
-                </a>
-                <div class="collapse navbar-collapse sidebar">
-                    <ul class="flex-column navbar-nav">
-                        <div class="card text-center border-dark  bg-dark mx-auto py-2">
-                            <div class="card-header py-0">
-                                <span class=" d-block text-white">Reddington Red</span>
-                            </div>
-                            <div class="card-body py-1">
-                                <img class="img-fluid" width="50" height="50" src="../assets/img/person1.jpg" alt="">
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn-sm btn-block btn-danger">Salir</button>
-                            </div>
-                        </div>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><span class="">Link</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">hola</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+        <aside class="col-sm-12 col-md-auto d-inline-block p-0 bg-dark menu">
+            <app-navbar-user></app-navbar-user>
         </aside>
-        <main class="col-sm-8 bg-faded py-3 d-inline-block">
-            <h2>Nombre formulario</h2>
+        <main class="col d-inline-block bg-white shadow">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="row py-2">
+                        <div class="col-auto align-self-center">
+                            <h2 class="text-uppercase">Clientes</h2>
+                        </div>
+                        <div class="col-auto p-1 align-content-center">
+                            <button class="btn btn-sm btn-success rounded-circle"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="col-auto p-1 align-content-center">
+                            <button class="btn btn-sm btn-success rounded-circle "><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered table-sm table-responsive-sm">
+                        <thead class="thead-dark">
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Telefono</th>
+                            <th>DNI</th>
+                            <th>Sexo</th>
+                            <th>Acción</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Jhon Doe</td>
+                                <td>990012345</td>
+                                <td>03678291</td>
+                                <td>Hombre</td>
+                                <td class="">
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>04</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>05</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>07</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>08</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>09</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>Pepito Perez</td>
+                                <td>992812028</td>
+                                <td>40201786</td>
+                                <td>Hombre</td>
+                                <td>
+                                    <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                                    <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <nav aria-label="...">
+                        <ul class="pagination pagination-sm justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">1</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </main>
+        <div class="col-sm-12 col-lg-2 menu text-info border-white border-left">
+            historial
+        </div>
     </div>
 </div>
