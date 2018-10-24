@@ -1,0 +1,13 @@
+@media(min-width: 767.98px) {
+    .menu {
+        height: 100vh;
+    }
+    .collapse {
+        display: block!important;
+    }
+}
+
+.navbar-nav li:hover {
+    background: #6c757d;
+    /*font-weight: bold;*/
+}
