@@ -1,0 +1,66 @@
+clientes=[
+    {
+        id: 1,
+        nombre: "huawei villegas",
+        dni: "36001298",
+        telefono: "968072613",
+        sexo: true
+    },
+    {
+        id: 2,
+        nombre: "guido garcia",
+        dni: "36001299",
+        telefono: "968072614",
+        sexo: true
+    },
+    {
+        id: 3,
+        nombre: "dayana shakespiara",
+        dni: "36001299",
+        telefono: "968072615",
+        sexo: false
+    },
+    {
+        id: 4,
+        nombre: "delia quito",
+        dni: "36001300",
+        telefono: "968072616",
+        sexo: false
+    },
+    {
+        id: 5,
+        nombre: "chato yerson",
+        dni: "36001301",
+        telefono: "968072616",
+        sexo: true
+    },
+    {
+        id: 6,
+        nombre: "negro zarumilla",
+        dni: "36001305",
+        telefono: "968072618",
+        sexo: true
+    },
+    {
+        id: 7,
+        nombre: "marisela varisela",
+        dni: "36001320",
+        telefono: "968072620",
+        sexo: false
+    },
+    {
+        id: 8,
+        nombre: "desconocido",
+        dni: "00000000",
+        telefono: "999999999",
+        sexo: true
+    },
+    {
+        id: 9,
+        nombre: "sandy blanquito",
+        dni: "03902122",
+        telefono: "961580356",
+        sexo: false
+    },
+
+]
