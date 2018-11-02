@@ -1,4 +1,4 @@
-clientes=[
+clientes = [
     {
         id: 1,
         nombre: "huawei villegas",
@@ -62,5 +62,26 @@ clientes=[
         telefono: "961580356",
         sexo: false
     },
+    {
+        id: 10,
+        nombre: "yahaira bandida",
+        dni: "03902177",
+        telefono: "961580026",
+        sexo: false
+    },
 
+]
+
+categorias = [
+  {
+    id:1,
+    nombre: "cover diseño"
+  }
+]
+
+productos = [
+  {
+    id: 01
+    nombre:
+  }
 ]

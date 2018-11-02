@@ -1,0 +1,196 @@
+<div class="row justify-content-center">
+
+    <div class="col-12">
+        <div class="row pb-4 pt-1">
+            <div class="col-auto align-self-center">
+                <h2 class="text-uppercase">Clientes</h2>
+            </div>
+            <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo Cliente">
+                <button class="btn btn-sm btn-success rounded" data-toggle="modal" data-target="#agregarcliente"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Buscar Clientes">
+                <button class="btn btn-sm btn-success rounded" data-toggle="modal" data-target="#buscarcliente"><i class="fas fa-search"></i></button>
+            </div>
+            <!-- MODAL AGREGAR CLIENTE -->
+
+            <div class="modal fade" id="agregarcliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark text-light">
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="containter-fluid">
+                                <form action="">
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="nombre" placeholder="Nombre del cliente">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="telefono" class="col-sm-2 col-form-label">Télefono:</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="telefono" placeholder="Número de celular">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="dni" class="col-sm-2 col-form-label">DNI:</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control" id="dni" placeholder="Número de dni">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-auto">
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="hombre" value="option1" checked>
+                                                <label class="form-check-label" for="inlineRadio1">Hombre</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="mujer" value="option2">
+                                                <label class="form-check-label" for="inlineRadio2">Mujer</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-light">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success">Agregar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIN -->
+        </div>
+        <table class="table table-hover table-bordered table-sm table-responsive-sm">
+            <thead class="thead-dark">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>DNI</th>
+                <th>Sexo</th>
+                <th>Acción</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Jhon Doe</td>
+                    <td>990012345</td>
+                    <td>03678291</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>03</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>04</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>05</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>06</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>07</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>08</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>09</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i>Editar</a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i>Eliminar</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Pepito Perez</td>
+                    <td>992812028</td>
+                    <td>40201786</td>
+                    <td>Hombre</td>
+                    <td>
+                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav aria-label="...">
+            <ul class="pagination pagination-sm justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
