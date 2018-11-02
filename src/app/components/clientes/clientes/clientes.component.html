@@ -1,5 +1,8 @@
 <div class="row justify-content-center">
-
+    <!-- 
+        la funcionalidad de editar cliente se debe hacer con el mismo modal de agregar
+        la funcion de eliminar se debe hacer con un cuadrio de dialgo y una confirmacion
+     -->
     <div class="col-12">
         <div class="row pb-4 pt-1">
             <div class="col-auto align-self-center">
@@ -12,7 +15,6 @@
                 <button class="btn btn-sm btn-success rounded" data-toggle="modal" data-target="#buscarcliente"><i class="fas fa-search"></i></button>
             </div>
             <!-- MODAL AGREGAR CLIENTE -->
-
             <div class="modal fade" id="agregarcliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -64,12 +66,42 @@
                         </div>
                         <div class="modal-footer bg-light">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-success">Agregar</button>
+                            <button type="button" class="btn btn-success">Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- FIN -->
 
+            <!-- MODAL BUSCAR CLIENTE -->
+            <div class="modal fade" id="buscarcliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark text-light">
+                            <h5 class="modal-title" id="exampleModalLabel">Buscar Cliente</h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="containter-fluid">
+                                <form action="">
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-2 col-form-label">Buscar:</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese texto">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-light">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success">Buscar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- FIN -->
         </div>
         <table class="table table-hover table-bordered table-sm table-responsive-sm">
@@ -89,7 +121,7 @@
                     <td>03678291</td>
                     <td>Hombre</td>
                     <td>
-                        <a class="p-2 badge badge-info" href=""><i class="far fa-edit"></i></a>
+                        <a class="p-2 badge badge-info" href="" data-toggle="modal" data-target="#agregarcliente" ><i class="far fa-edit"></i></a>
                         <a class="p-2 badge badge-danger" href=""><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
