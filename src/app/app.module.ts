@@ -4,12 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavbarUserComponent } from './components/shared/navbar-user/navbar-user.component';
 import { ClientesComponent } from './components/clientes/clientes/clientes.component';
+import { GruposComponent } from './components/productos/grupos/grupos.component';
+import { CategoriasComponent } from './components/productos/categorias/categorias.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarUserComponent,
-    ClientesComponent
+    ClientesComponent,
+    GruposComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule
