@@ -6,6 +6,7 @@ import { NavbarUserComponent } from './components/shared/navbar-user/navbar-user
 import { ClientesComponent } from './components/clientes/clientes/clientes.component';
 import { GruposComponent } from './components/productos/grupos/grupos.component';
 import { CategoriasComponent } from './components/productos/categorias/categorias.component';
+import { MarcasComponent } from './components/productos/marcas/marcas.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CategoriasComponent } from './components/productos/categorias/categoria
     NavbarUserComponent,
     ClientesComponent,
     GruposComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    MarcasComponent
   ],
   imports: [
     BrowserModule
