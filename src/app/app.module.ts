@@ -8,6 +8,7 @@ import { GruposComponent } from './components/productos/grupos/grupos.component'
 import { CategoriasComponent } from './components/productos/categorias/categorias.component';
 import { MarcasComponent } from './components/productos/marcas/marcas.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { APP_ROUTES } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductosComponent } from './components/productos/productos.component';
     ProductosComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    APP_ROUTES
   ],
   providers: [],
   bootstrap: [AppComponent]
