@@ -7,6 +7,7 @@ import { ClientesComponent } from './components/clientes/clientes/clientes.compo
 import { GruposComponent } from './components/productos/grupos/grupos.component';
 import { CategoriasComponent } from './components/productos/categorias/categorias.component';
 import { MarcasComponent } from './components/productos/marcas/marcas.component';
+import { ProductosComponent } from './components/productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MarcasComponent } from './components/productos/marcas/marcas.component'
     ClientesComponent,
     GruposComponent,
     CategoriasComponent,
-    MarcasComponent
+    MarcasComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule
