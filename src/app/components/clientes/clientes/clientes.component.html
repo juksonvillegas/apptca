@@ -10,7 +10,7 @@
                 <h2 class="text-uppercase">Clientes</h2>
             </div>
             <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo Cliente">
-                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarcliente">
+                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarcliente" (click) = "agregarCliente()" >
                     <i class="fas fa-plus">
                         <span class="span-sm"></span>
                     </i>
@@ -24,7 +24,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg-dark text-light">
-                            <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">{{accion}} Cliente</h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -35,36 +35,43 @@
                                     <div class="form-group row">
                                         <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="nombre" placeholder="Nombre del cliente">
+                                            <input type="text" class="form-control" id="nombre"  placeholder="Nombre del cliente" value={{cliente.nombre}}>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="telefono" class="col-sm-2 col-form-label">Télefono:</label>
                                         <div class="col-sm-6">
-                                            <input type="number" class="form-control" id="telefono" placeholder="Número de celular">
+                                            <input type="number" class="form-control" id="telefono" placeholder="Número de celular" value={{cliente.telefono}}>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="dni" class="col-sm-2 col-form-label">DNI:</label>
                                         <div class="col-sm-6">
-                                            <input type="number" class="form-control" id="dni" placeholder="Número de dni">
+                                            <input type="number" class="form-control" id="dni" placeholder="Número de dni" value={{cliente.dni}}>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-auto">
-
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="hombre" value="option1" checked>
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"  id="hombre" value="option1" [checked]="cliente.sexo">
                                                 <label class="form-check-label" for="inlineRadio1">Hombre</label>
                                             </div>
                                         </div>
                                         <div class="col-auto">
 
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="mujer" value="option2">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="mujer" value="option2" [checked]="!cliente.sexo">
                                                 <label class="form-check-label" for="inlineRadio2">Mujer</label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <div class=" form-check form-check-inline">
+                                                <input class="form-control" id="mayorista" type="checkbox" [checked]="cliente.mayorista" aria-label="verificar si es mayorista">
+                                                <label for="">¿Es mayorista?</label>
+                                            </div>
+                                          </div>
                                     </div>
                                 </form>
                             </div>
@@ -125,6 +132,7 @@
                 <th>Nombre</th>
                 <th>Telefono</th>
                 <th>DNI</th>
+                <th>Sexo</th>
                 <th>Mayorista</th>
                 <th>Acción</th>
             </thead>
@@ -134,12 +142,14 @@
                     <td class="col-auto">{{c.nombre|titlecase}}</td>
                     <td *ngIf="c.telefono; else telefono">{{c.telefono}}</td>
                     <td *ngIf="c.dni; else dni">{{c.dni}}</td>
+                    <td *ngIf="c.sexo; else sexo">Hombre</td>
                     <td *ngIf="c.mayorista; else mayorista">SI</td>
                     <td>
                         <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                         <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-sm btn-success" (click)="verCliente(c.id)" >
+                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarcliente" (click)="verCliente(c.id)" >
+
                                     <i class="fas fa-edit"></i> 
                                 </button>
                                 <!-- <a  (click)="verCliente()" class="btn-sm btn-success" href="{{baseurl}}{{c.id}}">
@@ -156,6 +166,7 @@
                     </td>
                     <ng-template #mayorista><td>NO</td></ng-template>
                     <ng-template #dni><td>NO</td></ng-template>
+                    <ng-template #sexo><td>Mujer</td></ng-template>
                     <ng-template #telefono><td>NO</td></ng-template>
                 </tr>
             </tbody>

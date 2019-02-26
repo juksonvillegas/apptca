@@ -9,8 +9,9 @@ import {ClientesService} from '../clientes.service';
 export class ClientesComponent {
   datos = 0;
   clientes = [];
-  cliente = '';
+  cliente = [];
   baseurl = 'clientes/';
+  accion = '';
   constructor(private servicio: ClientesService ) {
     this.listaClientes();
   }
@@ -27,6 +28,7 @@ export class ClientesComponent {
     );
   }
   verCliente = (id) => {
+    this.accion = 'Editar';
     this.servicio.getCliente(id).subscribe(
       data => {
         this.cliente = data;
@@ -36,5 +38,9 @@ export class ClientesComponent {
         console.log(error);
       }
     );
+  }
+  agregarCliente = () => {
+    this.accion = 'Agregar';
+    this.cliente = [];
   }
 }
