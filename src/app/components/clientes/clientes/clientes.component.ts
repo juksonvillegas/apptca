@@ -1,15 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import {ClientesService} from '../clientes.service';
 
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+  providers : [ClientesService]
 })
-export class ClientesComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+export class ClientesComponent {
+  datos = 0;
+  clientes = [];
+  cliente = '';
+  baseurl = 'clientes/';
+  constructor(private servicio: ClientesService ) {
+    this.listaClientes();
   }
-
+  listaClientes = () => {
+    this.servicio.getClientes().subscribe(
+      data => {
+        // data results contiene solo el array de datos
+        this.clientes = data.results;
+        this.datos = data.count;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+  verCliente = (id) => {
+    this.servicio.getCliente(id).subscribe(
+      data => {
+        this.cliente = data;
+        console.log(this.cliente);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }

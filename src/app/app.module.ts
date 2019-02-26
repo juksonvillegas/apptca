@@ -9,6 +9,8 @@ import { CategoriasComponent } from './components/productos/categorias/categoria
 import { MarcasComponent } from './components/productos/marcas/marcas.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { APP_ROUTES } from './app.routes';
+import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { EditarclientesComponent } from './components/clientes/editarclientes/editarclientes.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { APP_ROUTES } from './app.routes';
     GruposComponent,
     CategoriasComponent,
     MarcasComponent,
-    ProductosComponent
+    ProductosComponent,
+    EditarclientesComponent
   ],
   imports: [
     BrowserModule,
-    APP_ROUTES
+    APP_ROUTES,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
