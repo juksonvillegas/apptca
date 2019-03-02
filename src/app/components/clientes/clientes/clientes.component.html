@@ -35,19 +35,22 @@
                                     <div class="form-group row">
                                         <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" [(ngModel)]="cliente.nombre" class="form-control" id="nombre" name="nombre"  placeholder="Nombre del cliente" value={{cliente.nombre}}>
+                                            <input type="text" [(ngModel)]="cliente.nombre" class="form-control" id="nombre" name="nombre"  
+                                            placeholder="Nombre del cliente" value={{cliente.nombre}} autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="telefono" class="col-sm-2 col-form-label">Télefono:</label>
                                         <div class="col-sm-6">
-                                            <input type="number" [(ngModel)]="cliente.telefono" class="form-control" id="telefono" name="telefono" placeholder="Número de celular" value={{cliente.telefono}}>
+                                            <input type="number" [(ngModel)]="cliente.telefono" class="form-control" id="telefono" name="telefono"
+                                            placeholder="Número de celular" value={{cliente.telefono}} mask="000000000" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="dni" class="col-sm-2 col-form-label">DNI:</label>
                                         <div class="col-sm-6">
-                                            <input type="number" [(ngModel)]="cliente.dni" class="form-control" id="dni" name="dni" placeholder="Número de dni" value={{cliente.dni}}>
+                                            <input type="text" [(ngModel)]="cliente.dni" class="form-control" id="dni" name="dni" 
+                                            placeholder="Número de dni" value={{cliente.dni}} mask="00000000" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -55,7 +58,7 @@
                                          <div class="col-6">
                                             <select class="form-control" name="sexo" id="sexo" [(ngModel)]="cliente.sexo">
                                                 <option value="true">Hombre</option>
-                                                <option value="false">Mujer</option>
+                                                <option value="false" >Mujer</option>
                                             </select>
                                             
                                         </div>
@@ -144,17 +147,13 @@
                         <div class="row">
                             <div class="col-3">
                                 <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarcliente" (click)="verCliente(c.id)" >
-
                                     <i class="fas fa-edit"></i> 
                                 </button>
-                                <!-- <a  (click)="verCliente()" class="btn-sm btn-success" href="{{baseurl}}{{c.id}}">
-                                    <i class="fas fa-edit">Editar</i>
-                                </a> -->
                             </div>
                             <div class="col-3">
-                                <a class="btn-sm btn-danger" href="">
-                                    <i class="fas fa-trash-alt">Eliminar</i>
-                                </a>
+                                <button class="btn btn-sm btn-danger" data-toggle="modal" >
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
                             </div>
                         </div>
                         

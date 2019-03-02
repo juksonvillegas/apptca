@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule } from '@angular/forms';
 import {NotifierModule} from 'angular-notifier';
+import {NgxMaskModule} from 'ngx-mask';
 
 import { AppComponent } from './app.component';
 import { NavbarUserComponent } from './components/shared/navbar-user/navbar-user.component';
@@ -13,6 +14,7 @@ import { ProductosComponent } from './components/productos/productos.component';
 import { APP_ROUTES } from './app.routes';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { EditarclientesComponent } from './components/clientes/editarclientes/editarclientes.component';
+import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { EditarclientesComponent } from './components/clientes/editarclientes/ed
     APP_ROUTES,
     HttpClientModule,
     FormsModule,
-    NotifierModule
+    NotifierModule,
+    NgxMaskModule.forRoot(),
     ],
   providers: [],
   bootstrap: [AppComponent]

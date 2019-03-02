@@ -57,6 +57,7 @@ export class ClientesComponent {
   }
   agregarCliente = () => {
     this.accion = 'Agregar';
+    console.log('aca va el codigo para agregar');
     // this.cliente = [];
   }
 }
