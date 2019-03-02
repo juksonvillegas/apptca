@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule } from '@angular/forms';
+import {NotifierModule} from 'angular-notifier';
 
 import { AppComponent } from './app.component';
 import { NavbarUserComponent } from './components/shared/navbar-user/navbar-user.component';
@@ -26,8 +28,10 @@ import { EditarclientesComponent } from './components/clientes/editarclientes/ed
   imports: [
     BrowserModule,
     APP_ROUTES,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    FormsModule,
+    NotifierModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

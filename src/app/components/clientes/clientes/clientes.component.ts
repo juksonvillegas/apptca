@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ClientesService} from '../clientes.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-clientes',
@@ -9,10 +10,13 @@ import {ClientesService} from '../clientes.service';
 export class ClientesComponent {
   datos = 0;
   clientes = [];
-  cliente = [];
+  cliente = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
+  proveedor: false, sexo: true, estado: true };
   baseurl = 'clientes/';
   accion = '';
-  constructor(private servicio: ClientesService ) {
+  private readonly notifier: NotifierService;
+  constructor(private servicio: ClientesService , notifierService: NotifierService) {
+    this.notifier = notifierService;
     this.listaClientes();
   }
   listaClientes = () => {
@@ -39,8 +43,20 @@ export class ClientesComponent {
       }
     );
   }
+  actualizarCliente = () => {
+    this.servicio.updateCliente(this.cliente).subscribe(
+      data => {
+        this.cliente = data;
+        this.listaClientes();
+        this.notifier.notify( 'success', 'Datos guardados correctamente' );
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
   agregarCliente = () => {
     this.accion = 'Agregar';
-    this.cliente = [];
+    // this.cliente = [];
   }
 }
