@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule } from '@angular/forms';
-import {NotifierModule} from 'angular-notifier';
 import {NgxMaskModule} from 'ngx-mask';
+import {NotifierModule} from 'angular-notifier';
 
 import { AppComponent } from './app.component';
 import { NavbarUserComponent } from './components/shared/navbar-user/navbar-user.component';
@@ -32,8 +32,8 @@ import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
     APP_ROUTES,
     HttpClientModule,
     FormsModule,
-    NotifierModule,
     NgxMaskModule.forRoot(),
+    NotifierModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,15 +10,33 @@
                 <h2 class="text-uppercase">Clientes</h2>
             </div>
             <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo Cliente">
-                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarcliente" (click) = "agregarCliente()" >
+                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarcliente" (click)="abrirAgregarCliente()" >
                     <i class="fas fa-plus">
                         <span class="span-sm"></span>
                     </i>
                 </button>
             </div>
-            <!-- <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Buscar Clientes">
-                <button class="btn btn-sm btn-success rounded" data-toggle="modal" data-target="#buscarcliente"><i class="fas fa-search"></i></button>
-            </div> -->
+            <!-- MODAL ELIMINAR CLIENTE -->
+            <div class="modal fade" id="eliminarcliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">¿Eliminar Cliente?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Nombre: {{cliente.nombre|titlecase}}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarCliente()" >Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!-- FIN ELIMINAR CLIENTE -->
             <!-- MODAL AGREGAR CLIENTE -->
             <div class="modal fade" id="agregarcliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -42,7 +60,7 @@
                                     <div class="form-group row">
                                         <label for="telefono" class="col-sm-2 col-form-label">Télefono:</label>
                                         <div class="col-sm-6">
-                                            <input type="number" [(ngModel)]="cliente.telefono" class="form-control" id="telefono" name="telefono"
+                                            <input type="text" [(ngModel)]="cliente.telefono" class="form-control" id="telefono" name="telefono"
                                             placeholder="Número de celular" value={{cliente.telefono}} mask="000000000" autocomplete="off">
                                         </div>
                                     </div>
@@ -76,49 +94,18 @@
                         </div>
                         <div class="modal-footer bg-light">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" (click)="actualizarCliente()" data-dismiss="modal" class="btn btn-success">Guardar</button>
+                            <button type="button" (click)="seleccionarAccion()" data-dismiss="modal" class="btn btn-success">Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- FIN -->
-
-            <!-- MODAL BUSCAR CLIENTE -->
-            <div class="modal fade" id="buscarcliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark text-light">
-                            <h5 class="modal-title" id="exampleModalLabel">Buscar Cliente</h5>
-                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="containter-fluid">
-                                <form action="">
-                                    <div class="form-group row">
-                                        <label for="nombre" class="col-sm-2 col-form-label">Buscar:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese texto">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer bg-light">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-success">Buscar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- FIN -->
+            <!-- FIN AGREGAR CLIENTE -->
         </div>
         <div class="row p-3">
             <div class="input-group">
-                <input autofocus id="txtbuscar" type="text" class="form-control" placeholder="Ingrese texto a buscar">
+                <input autofocus (keyup)="buscarClientes(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="button-addon2">
+                    <button (click)="buscarClientes(term)" class="btn btn-primary" type="button" id="button-addon2">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -132,6 +119,7 @@
                 <th>DNI</th>
                 <th>Sexo</th>
                 <th>Mayorista</th>
+                <th>Estado</th>
                 <th>Acción</th>
             </thead>
             <tbody>
@@ -142,6 +130,7 @@
                     <td *ngIf="c.dni; else dni">{{c.dni}}</td>
                     <td *ngIf="c.sexo; else sexo">Hombre</td>
                     <td *ngIf="c.mayorista; else mayorista">SI</td>
+                    <td>{{c.estado}}</td>
                     <td>
                         <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                         <div class="row">
@@ -151,7 +140,7 @@
                                 </button>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" >
+                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarcliente" (click)="verCliente(c.id)" >
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -180,8 +169,6 @@
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
             </ul>
         </nav>
-        <div class="col-6">
-            <notifier-container></notifier-container>
-        </div>
+        <notifier-container></notifier-container>
     </div>
 </div>
