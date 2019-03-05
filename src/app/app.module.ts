@@ -13,8 +13,8 @@ import { MarcasComponent } from './components/productos/marcas/marcas.component'
 import { ProductosComponent } from './components/productos/productos.component';
 import { APP_ROUTES } from './app.routes';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
-import { EditarclientesComponent } from './components/clientes/editarclientes/editarclientes.component';
 import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
+import { ProveedoresComponent } from './components/proveedores/proveedores.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
     CategoriasComponent,
     MarcasComponent,
     ProductosComponent,
-    EditarclientesComponent
+    ProveedoresComponent
   ],
   imports: [
     BrowserModule,

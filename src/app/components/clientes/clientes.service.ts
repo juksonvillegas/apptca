@@ -38,4 +38,8 @@ export class ClientesService {
         return this.http.get(this.baserl + 'clientes/?nombre__icontains=' + term + '',
         {headers: this.httpHeaders});
     }
+    getProveedores(): Observable<any> {
+        return this.http.get(this.baserl + 'proveedores/',
+        {headers: this.httpHeaders});
+    }
 }
