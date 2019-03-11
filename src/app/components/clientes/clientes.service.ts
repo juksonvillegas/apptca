@@ -8,12 +8,7 @@ export class ClientesService {
     baserl = 'http://127.0.0.1:8000/';
     httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
     constructor(private http: HttpClient) {}
-    getClientes(): Observable<any> {
-        return this.http.get(this.baserl + 'clientes/',
-        {headers: this.httpHeaders});
-    }
     getClientesPag(url: string): Observable<any> {
-        console.log(url);
         if (url) {
             return this.http.get(this.baserl + 'clientes/' + url,
             {headers: this.httpHeaders});
@@ -54,8 +49,15 @@ export class ClientesService {
         return this.http.get(this.baserl + 'clientes/?nombre__icontains=' + term + '',
         {headers: this.httpHeaders});
     }
-    getProveedores(): Observable<any> {
-        return this.http.get(this.baserl + 'proveedores/',
-        {headers: this.httpHeaders});
+    getProveedores(url: string): Observable<any> {
+        if (url) {
+            return this.http.get(this.baserl + 'proveedores/' + url,
+            {headers: this.httpHeaders});
+        } else {
+            return this.http.get(this.baserl + 'proveedores/',
+            {headers: this.httpHeaders});
+        }
+        // return this.http.get(this.baserl + 'proveedores/',
+        // {headers: this.httpHeaders});
     }
 }

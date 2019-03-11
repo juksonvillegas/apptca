@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ClientesService} from '../clientes/clientes.service';
+import { Component, Input } from '@angular/core';
+import {ApiService} from '../../servicios/api.service';
 import { NotifierService } from 'angular-notifier';
 
 @Component({
@@ -7,22 +7,22 @@ import { NotifierService } from 'angular-notifier';
   templateUrl: './proveedores.component.html'
 })
 export class ProveedoresComponent {
+  modelo = 'proveedores/';
   datos = 0;
-  proveedores = [];
+  @Input() proveedores = [];
   proveedor = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
   proveedor: true, sexo: true, estado: true };
   baseurl = 'proveedores/';
   accion = '';
   term = '';
   private readonly notifier: NotifierService;
-  constructor(private servicio: ClientesService, notifierService: NotifierService) {
+  constructor(private servicio: ApiService, notifierService: NotifierService) {
     this.notifier = notifierService;
     this.listaProveedores();
   }
   listaProveedores = () => {
-    this.servicio.getProveedores().subscribe(
+    this.servicio.getData(this.modelo, '').subscribe(
       data => {
-        // data results contiene solo el array de datos
         this.proveedores = data.results;
         this.datos = data.count;
       },
@@ -33,73 +33,75 @@ export class ProveedoresComponent {
   }
   buscarClientes = () => {
     if (this.term.length >= 2) {
-      this.servicio.buscarCliente(this.term).subscribe(
-        data => {
-          // data results contiene solo el array de datos
-          this.proveedores = [];
-          this.proveedores = data.results;
-          this.datos = data.count;
-        },
-        error => {
-          console.log(error);
-        }
-      );
+    this.servicio.findData(this.modelo, '?nombre__icontains=', this.term).subscribe(
+    data => {
+      this.proveedores = [];
+      this.proveedores = data.results;
+      this.datos = data.count;
+    },
+    error => {
+      console.log(error);
+    }
+    );
     } else {this.listaProveedores(); }
   }
-  verCliente = (id) => {
-    this.accion = 'Editar';
-    this.servicio.getCliente(id).subscribe(
-      data => {
-        this.proveedor = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  seleccionarAccion = () => {
-    if (this.proveedor.id === -1) {
-      this.agregarProveedor();
-    } else { this.actualizarCliente(); }
-  }
-  actualizarCliente = () => {
-    this.servicio.updateCliente(this.proveedor).subscribe(
-      data => {
-        this.proveedor = data;
-        this.listaProveedores();
-        this.notifier.notify('success', 'Proveedor actualizado...OK!');
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  abrirAgregarProveedor = () => {
-    this.proveedor = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
-    proveedor: true, sexo: true, estado: true };
-    this.accion = 'Agregar';
-  }
-  agregarProveedor = () => {
-    this.servicio.crearProveedor(this.proveedor).subscribe(
-      data => {
-        this.listaProveedores();
-        this.notifier.notify('success', 'Proveedor agregado...OK!');
-      },
-      error => {
-
-      }
-    );
-  }
-  eliminarCliente = () => {
-    this.servicio.eliminarCliente(this.proveedor).subscribe(
-      data => {
-        this.proveedor = data;
-        this.listaProveedores();
-        this.notifier.notify('error', 'Proveedor eliminado...OK!');
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
 }
+//   buscarClientes = () => {
+//   }
+//   verCliente = (id) => {
+//     this.accion = 'Editar';
+//     this.servicio.getCliente(id).subscribe(
+//       data => {
+//         this.proveedor = data;
+//       },
+//       error => {
+//         console.log(error);
+//       }
+//     );
+//   }
+//   seleccionarAccion = () => {
+//     if (this.proveedor.id === -1) {
+//       this.agregarProveedor();
+//     } else { this.actualizarCliente(); }
+//   }
+//   actualizarCliente = () => {
+//     this.servicio.updateCliente(this.proveedor).subscribe(
+//       data => {
+//         this.proveedor = data;
+//         this.listaProveedores();
+//         this.notifier.notify('success', 'Proveedor actualizado...OK!');
+//       },
+//       error => {
+//         console.log(error);
+//       }
+//     );
+//   }
+//   abrirAgregarProveedor = () => {
+//     this.proveedor = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
+//     proveedor: true, sexo: true, estado: true };
+//     this.accion = 'Agregar';
+//   }
+//   agregarProveedor = () => {
+//     this.servicio.crearProveedor(this.proveedor).subscribe(
+//       data => {
+//         this.listaProveedores();
+//         this.notifier.notify('success', 'Proveedor agregado...OK!');
+//       },
+//       error => {
+
+//       }
+//     );
+//   }
+//   eliminarCliente = () => {
+//     this.servicio.eliminarCliente(this.proveedor).subscribe(
+//       data => {
+//         this.proveedor = data;
+//         this.listaProveedores();
+//         this.notifier.notify('error', 'Proveedor eliminado...OK!');
+//       },
+//       error => {
+//         console.log(error);
+//       }
+//     );
+//   }
+//  }

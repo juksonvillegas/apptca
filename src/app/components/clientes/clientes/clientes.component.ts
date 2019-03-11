@@ -1,36 +1,37 @@
 import { Component, Input } from '@angular/core';
 import {ClientesService} from '../clientes.service';
+import {ApiService} from '../../../servicios/api.service';
 import { NotifierService } from 'angular-notifier';
-import { splitAtColon } from '../../../../../node_modules/@angular/compiler/src/util';
 
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  providers : [ClientesService]
+  providers : [ApiService]
 })
 export class ClientesComponent {
+  modelo = 'clientes/';
   datos = 0;
   @Input() clientes = [];
   @Input() data: any = [];
   cliente = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
   proveedor: false, sexo: true, estado: true };
-  baseurl = 'clientes/';
   accion = '';
   @Input() next: string;
   @Input() prev: string;
   term = '';
+  params = '?nombre__icontains=';
   private readonly notifier: NotifierService;
-  constructor(private servicio: ClientesService, notifierService: NotifierService) {
+  constructor(private servicio: ApiService, notifierService: NotifierService) {
     this.notifier = notifierService;
     this.listaClientes();
   }
   listaClientes = () => {
-    this.servicio.getClientesPag('').subscribe(
+    this.servicio.getData(this.modelo, '').subscribe(
       data => {
         // data results contiene solo el array de datos
         this.clientes = data.results;
         this.datos = data.count;
-        let a: string = data.next.split('/');
+        const a = data.next.split('/');
         this.next = a[4];
         this.prev = data.previous;
       },
@@ -41,7 +42,7 @@ export class ClientesComponent {
   }
   buscarClientes = () => {
     if (this.term.length >= 2) {
-      this.servicio.buscarCliente(this.term).subscribe(
+      this.servicio.findData(this.modelo, this.params, this.term).subscribe(
         data => {
           // data results contiene solo el array de datos
           this.clientes = [];
@@ -56,7 +57,7 @@ export class ClientesComponent {
   }
   verCliente = (id) => {
     this.accion = 'Editar';
-    this.servicio.getCliente(id).subscribe(
+    this.servicio.getDataId(this.modelo, id).subscribe(
       data => {
         this.cliente = data;
       },
@@ -71,7 +72,7 @@ export class ClientesComponent {
     } else { this.actualizarCliente(); }
   }
   actualizarCliente = () => {
-    this.servicio.updateCliente(this.cliente).subscribe(
+    this.servicio.updateData(this.modelo, this.cliente).subscribe(
       data => {
         this.cliente = data;
         this.listaClientes();
@@ -88,18 +89,19 @@ export class ClientesComponent {
     this.accion = 'Agregar';
   }
   agregarCliente = () => {
-    this.servicio.crearCliente(this.cliente).subscribe(
+    this.servicio.addData(this.modelo, this.cliente).subscribe(
       data => {
         this.listaClientes();
         this.notifier.notify('success', 'Cliente agregado...OK!');
       },
       error => {
-
+        console.log(error);
       }
     );
   }
   eliminarCliente = () => {
-    this.servicio.eliminarCliente(this.cliente).subscribe(
+    this.cliente.estado = false;
+    this.servicio.deleteData(this.modelo, this.cliente).subscribe(
       data => {
         this.cliente = data;
         this.listaClientes();

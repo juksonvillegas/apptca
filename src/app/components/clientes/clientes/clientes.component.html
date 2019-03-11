@@ -105,9 +105,11 @@
             <div class="input-group">
                 <input autofocus (keyup)="buscarClientes(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
                 <div class="input-group-append">
-                    <button (click)="buscarClientes(term)" class="btn btn-primary" type="button" id="button-addon2">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <select class="form-control" name="params" id="params" [(ngModel)]="params">
+                        <option value='?nombre__icontains=' selected="selected" >Nombre</option>
+                        <option value='?telefono__icontains=' >Teléfono</option>
+                        <option value='?dni__icontains=' >DNI</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -167,7 +169,7 @@
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
             </ul>
         </nav> -->
-        <div>
+        <div class="fixed-bottom">
             <app-pagination (clientesevent)="recibirClientes($event)" [prev]="prev" [next]="next" ></app-pagination>
         </div>
         <notifier-container></notifier-container>
