@@ -114,12 +114,11 @@
         <!-- Tabla clientes -->
         <table *ngIf="this.datos>0" class="table table-hover table-bordered table-sm table-responsive-sm">
             <thead class="thead-dark">
-                <th>Nombre</th>
+                <th>Nombres Completos</th>
                 <th>Telefono</th>
                 <th>DNI</th>
                 <th>Sexo</th>
                 <th>Mayorista</th>
-                <th>Estado</th>
                 <th>Acción</th>
             </thead>
             <tbody>
@@ -130,7 +129,6 @@
                     <td *ngIf="c.dni; else dni">{{c.dni}}</td>
                     <td *ngIf="c.sexo; else sexo">Hombre</td>
                     <td *ngIf="c.mayorista; else mayorista">SI</td>
-                    <td>{{c.estado}}</td>
                     <td>
                         <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                         <div class="row">
@@ -160,7 +158,7 @@
             nada para mostrar 
         </div>
         <!-- Paginacion -->
-        <nav *ngIf="this.datos>10" aria-label="...">
+        <!-- <nav *ngIf="this.datos>10" aria-label="...">
             <ul class="pagination pagination-sm justify-content-center">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">1</a>
@@ -168,7 +166,10 @@
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
             </ul>
-        </nav>
+        </nav> -->
+        <div>
+            <app-pagination (clientesevent)="recibirClientes($event)" [prev]="prev" [next]="next" ></app-pagination>
+        </div>
         <notifier-container></notifier-container>
     </div>
 </div>

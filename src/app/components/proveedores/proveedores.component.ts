@@ -59,7 +59,7 @@ export class ProveedoresComponent {
   }
   seleccionarAccion = () => {
     if (this.proveedor.id === -1) {
-      this.agregarCliente();
+      this.agregarProveedor();
     } else { this.actualizarCliente(); }
   }
   actualizarCliente = () => {
@@ -67,23 +67,23 @@ export class ProveedoresComponent {
       data => {
         this.proveedor = data;
         this.listaProveedores();
-        this.notifier.notify('success', 'Cliente actualizado...OK!');
+        this.notifier.notify('success', 'Proveedor actualizado...OK!');
       },
       error => {
         console.log(error);
       }
     );
   }
-  abrirAgregarCliente = () => {
+  abrirAgregarProveedor = () => {
     this.proveedor = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
-    proveedor: false, sexo: true, estado: true };
+    proveedor: true, sexo: true, estado: true };
     this.accion = 'Agregar';
   }
-  agregarCliente = () => {
-    this.servicio.crearCliente(this.proveedor).subscribe(
+  agregarProveedor = () => {
+    this.servicio.crearProveedor(this.proveedor).subscribe(
       data => {
         this.listaProveedores();
-        this.notifier.notify('success', 'Cliente agregado...OK!');
+        this.notifier.notify('success', 'Proveedor agregado...OK!');
       },
       error => {
 
@@ -95,7 +95,7 @@ export class ProveedoresComponent {
       data => {
         this.proveedor = data;
         this.listaProveedores();
-        this.notifier.notify('error', 'Cliente eliminado...OK!');
+        this.notifier.notify('error', 'Proveedor eliminado...OK!');
       },
       error => {
         console.log(error);

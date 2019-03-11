@@ -12,6 +12,16 @@ export class ClientesService {
         return this.http.get(this.baserl + 'clientes/',
         {headers: this.httpHeaders});
     }
+    getClientesPag(url: string): Observable<any> {
+        console.log(url);
+        if (url) {
+            return this.http.get(this.baserl + 'clientes/' + url,
+            {headers: this.httpHeaders});
+        } else {
+            return this.http.get(this.baserl + 'clientes/',
+            {headers: this.httpHeaders});
+        }
+    }
     getCliente(id): Observable<any> {
         return this.http.get(this.baserl + 'clientes/' + id + '/',
         {headers: this.httpHeaders});
@@ -32,6 +42,12 @@ export class ClientesService {
         const CLIENTE = {nombre: c.nombre, telefono: c.telefono, dni: c.dni,
             mayorista: c.mayorista, proveedor: c.proveedor, sexo: c.sexo, estado: c.estado };
         return this.http.post(this.baserl + 'clientes/' , CLIENTE,
+        {headers: this.httpHeaders});
+    }
+    crearProveedor(c): Observable<any> {
+        const CLIENTE = {nombre: c.nombre, telefono: c.telefono, dni: c.dni,
+            mayorista: c.mayorista, proveedor: true, sexo: c.sexo, estado: c.estado };
+        return this.http.post(this.baserl + 'proveedores/' , CLIENTE,
         {headers: this.httpHeaders});
     }
     buscarCliente(term): Observable<any> {

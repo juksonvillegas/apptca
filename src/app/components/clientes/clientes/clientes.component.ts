@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {ClientesService} from '../clientes.service';
 import { NotifierService } from 'angular-notifier';
+import { splitAtColon } from '../../../../../node_modules/@angular/compiler/src/util';
 
 @Component({
   selector: 'app-clientes',
@@ -9,11 +10,14 @@ import { NotifierService } from 'angular-notifier';
 })
 export class ClientesComponent {
   datos = 0;
-  clientes = [];
+  @Input() clientes = [];
+  @Input() data: any = [];
   cliente = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
   proveedor: false, sexo: true, estado: true };
   baseurl = 'clientes/';
   accion = '';
+  @Input() next: string;
+  @Input() prev: string;
   term = '';
   private readonly notifier: NotifierService;
   constructor(private servicio: ClientesService, notifierService: NotifierService) {
@@ -21,11 +25,14 @@ export class ClientesComponent {
     this.listaClientes();
   }
   listaClientes = () => {
-    this.servicio.getClientes().subscribe(
+    this.servicio.getClientesPag('').subscribe(
       data => {
         // data results contiene solo el array de datos
         this.clientes = data.results;
         this.datos = data.count;
+        let a: string = data.next.split('/');
+        this.next = a[4];
+        this.prev = data.previous;
       },
       error => {
         console.log(error);
@@ -102,5 +109,11 @@ export class ClientesComponent {
         console.log(error);
       }
     );
+  }
+  recibirClientes($event) {
+    this.data = $event;
+    this.clientes = this.data.results;
+    this.next = this.data.next;
+    this.prev = this.data.previous;
   }
 }

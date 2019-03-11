@@ -15,6 +15,7 @@ import { APP_ROUTES } from './app.routes';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
 import { ProveedoresComponent } from './components/proveedores/proveedores.component';
+import { PaginationComponent } from './components/shared/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProveedoresComponent } from './components/proveedores/proveedores.compo
     CategoriasComponent,
     MarcasComponent,
     ProductosComponent,
-    ProveedoresComponent
+    ProveedoresComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

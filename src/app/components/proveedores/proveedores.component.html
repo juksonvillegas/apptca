@@ -6,7 +6,7 @@
                 <h2 class="text-uppercase">proveedores</h2>
             </div>
             <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo Proveedor">
-                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarproveedor" (click)="abrirAgregarCliente()" >
+                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarproveedor" (click)="abrirAgregarProveedor()" >
                     <i class="fas fa-plus">
                         <span class="span-sm"></span>
                     </i>
@@ -60,31 +60,6 @@
                                             placeholder="Número de celular" value={{proveedor.telefono}} mask="000000000" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="dni" class="col-sm-2 col-form-label">DNI:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" [(ngModel)]="proveedor.dni" class="form-control" id="dni" name="dni" 
-                                            placeholder="Número de dni" value={{proveedor.dni}} mask="00000000" autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label" for="sexo">Sexo:</label>
-                                         <div class="col-6">
-                                            <select class="form-control" name="sexo" id="sexo" [(ngModel)]="proveedor.sexo">
-                                                <option value="true">Hombre</option>
-                                                <option value="false" >Mujer</option>
-                                            </select>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-10">
-                                            <div class=" form-check form-check-inline">
-                                                <input class="form-control" id="mayorista" name="mayorista" type="checkbox" [(ngModel)]="proveedor.mayorista" [checked]="proveedor.mayorista" aria-label="verificar si es mayorista">
-                                                <label for="">¿Es mayorista?</label>
-                                            </div>
-                                          </div>
-                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -112,10 +87,6 @@
             <thead class="thead-dark">
                 <th>Nombre</th>
                 <th>Telefono</th>
-                <th>DNI</th>
-                <th>Sexo</th>
-                <th>Mayorista</th>
-                <th>Estado</th>
                 <th>Acción</th>
             </thead>
             <tbody>
@@ -123,10 +94,6 @@
                 <tr *ngFor = "let c of proveedores">
                     <td class="col-auto">{{c.nombre|titlecase}}</td>
                     <td *ngIf="c.telefono; else telefono">{{c.telefono}}</td>
-                    <td *ngIf="c.dni; else dni">{{c.dni}}</td>
-                    <td *ngIf="c.sexo; else sexo">Hombre</td>
-                    <td *ngIf="c.mayorista; else mayorista">SI</td>
-                    <td>{{c.estado}}</td>
                     <td>
                         <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                         <div class="row">
@@ -141,11 +108,7 @@
                                 </button>
                             </div>
                         </div>
-                        
                     </td>
-                    <ng-template #mayorista><td>NO</td></ng-template>
-                    <ng-template #dni><td>NO</td></ng-template>
-                    <ng-template #sexo><td>Mujer</td></ng-template>
                     <ng-template #telefono><td>NO</td></ng-template>
                 </tr>
             </tbody>
