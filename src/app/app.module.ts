@@ -3,33 +3,34 @@ import { NgModule } from '@angular/core';
 import {FormsModule } from '@angular/forms';
 import {NgxMaskModule} from 'ngx-mask';
 import {NotifierModule} from 'angular-notifier';
-
 import { AppComponent } from './app.component';
 import { NavbarUserComponent } from './components/shared/navbar-user/navbar-user.component';
 import { ClientesComponent } from './components/clientes/clientes/clientes.component';
-import { GruposComponent } from './components/productos/grupos/grupos.component';
-import { CategoriasComponent } from './components/productos/categorias/categorias.component';
-import { MarcasComponent } from './components/productos/marcas/marcas.component';
-import { ProductosComponent } from './components/productos/productos.component';
 import { APP_ROUTES } from './app.routes';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
 import { ProveedoresComponent } from './components/proveedores/proveedores.component';
 import { PaginationComponent } from './components/shared/pagination/pagination.component';
-import { ModelosComponent } from './components/modelos/modelos.component';
+import { MercaderiaComponent } from './components/mercaderia/mercaderia.component';
+import { CategoriasComponent } from './components/mercaderia/categorias/categorias.component';
+import { MarcasComponent } from './components/mercaderia/marcas/marcas.component';
+import { ModelosComponent } from './components/mercaderia/modelos/modelos.component';
+import { PreciosComponent } from './components/mercaderia/precios/precios.component';
+import { ProductosComponent } from './components/mercaderia/productos/productos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarUserComponent,
     ClientesComponent,
-    GruposComponent,
-    CategoriasComponent,
-    MarcasComponent,
-    ProductosComponent,
     ProveedoresComponent,
     PaginationComponent,
-    ModelosComponent
+    MercaderiaComponent,
+    CategoriasComponent,
+    MarcasComponent,
+    ModelosComponent,
+    PreciosComponent,
+    ProductosComponent,
   ],
   imports: [
     BrowserModule,

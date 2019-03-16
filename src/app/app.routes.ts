@@ -1,12 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './components/clientes/clientes/clientes.component';
-import { ProductosComponent } from './components/productos/productos.component';
-import { ProveedoresComponent } from './components/proveedores/proveedores.component'; 
+import { ProveedoresComponent } from './components/proveedores/proveedores.component';
+import { MercaderiaComponent } from './components/mercaderia/mercaderia.component';
+import { rutas } from './components/mercaderia/mercaderia.routes';
 
 const appRoutes: Routes = [
     {path: 'clientes', component: ClientesComponent},
     {path: 'proveedores', component: ProveedoresComponent},
-    {path: 'productos', component: ProductosComponent},
+    {path: 'productos', component: MercaderiaComponent, children: rutas},
     {path: '', redirectTo: '/clientes', pathMatch: 'full'},
     {path: '**', redirectTo: '/clientes', pathMatch: 'full'},
 ];
