@@ -13,11 +13,11 @@ export class ClientesComponent {
   datos = 0;
   @Input() clientes = [];
   @Input() data: any = [];
+  @Input() next: string;
+  @Input() prev: string;
   cliente = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
   proveedor: false, sexo: true, estado: true };
   accion = '';
-  @Input() next: string;
-  @Input() prev: string;
   term = '';
   params = '?nombre__icontains=';
   private readonly notifier: NotifierService;
@@ -28,7 +28,6 @@ export class ClientesComponent {
   listaClientes = () => {
     this.servicio.getData(this.modelo, '').subscribe(
       data => {
-        // data results contiene solo el array de datos
         this.clientes = data.results;
         this.datos = data.count;
         const a = data.next.split('/');
@@ -112,7 +111,13 @@ export class ClientesComponent {
       }
     );
   }
-  recibirClientes($event) {
+  /*recibirClientes($event) {
+    this.data = $event;
+    this.clientes = this.data.results;
+    this.next = this.data.next;
+    this.prev = this.data.previous;
+  }*/
+  paginarModelo(modelo, $event) {
     this.data = $event;
     this.clientes = this.data.results;
     this.next = this.data.next;

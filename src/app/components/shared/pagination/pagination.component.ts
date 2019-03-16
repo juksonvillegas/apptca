@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {ClientesService} from '../../clientes/clientes.service';
+import {ApiService} from '../../../servicios/api.service';
 
 @Component({
   selector: 'app-pagination',
@@ -9,29 +10,26 @@ import {ClientesService} from '../../clientes/clientes.service';
 export class PaginationComponent {
   @Input() prev: string;
   @Input() next: string;
+  @Input() modelo: string;
   clientes = [];
-  @Output() clientesevent = new EventEmitter<any>();
-  constructor(private servicio: ClientesService) {
+  datos = [];
+  @Output() paginationEvent = new EventEmitter<any>();
+  constructor(private servicio: ApiService) {
   }
-  enviarClientes(ruta) {
-    console.log('la ruta es' + ruta);
+  paginarModelo(modelo: string, ruta: string) {
     let valor: string;
     if (ruta) {
       if (ruta.length > 9) {
-        let c = ruta.split('/');
+        const c = ruta.split('/');
         valor = c[4];
-      } else {
-        valor = ruta;
-      }
+      } else { valor = ruta; }
     }
-    this.servicio.getClientesPag(valor).subscribe(
+    this.servicio.getData(modelo, valor).subscribe(
       data => {
-        this.clientes = data.results;
-        this.clientesevent.emit(data);
+        this.datos = data.results;
+        this.paginationEvent.emit(data);
       },
-      error => {
-        console.log(error);
-      }
+      error => { console.log(error); }
     );
   }
 }

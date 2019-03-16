@@ -16,6 +16,7 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
 import { ProveedoresComponent } from './components/proveedores/proveedores.component';
 import { PaginationComponent } from './components/shared/pagination/pagination.component';
+import { ModelosComponent } from './components/modelos/modelos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PaginationComponent } from './components/shared/pagination/pagination.c
     MarcasComponent,
     ProductosComponent,
     ProveedoresComponent,
-    PaginationComponent
+    PaginationComponent,
+    ModelosComponent
   ],
   imports: [
     BrowserModule,

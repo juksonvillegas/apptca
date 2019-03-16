@@ -6,7 +6,7 @@
                 <h2 class="text-uppercase">proveedores</h2>
             </div>
             <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo Proveedor">
-                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarproveedor" (click)="abrirAgregarProveedor()" >
+                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarproveedor" (click)="abrirAgregarProveedor()" > 
                     <i class="fas fa-plus">
                         <span class="span-sm"></span>
                     </i>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarCliente()" >Eliminar</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarProveedor()" >Eliminar</button>
                     </div>
                   </div>
                 </div>
@@ -76,16 +76,17 @@
             <div class="input-group">
                 <input autofocus (keyup)="buscarClientes(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
                 <div class="input-group-append">
-                    <button (click)="buscarClientes(term)" class="btn btn-primary" type="button" id="button-addon2">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <select class="form-control" name="params" id="params" [(ngModel)]="params">
+                        <option value='?nombre__icontains=' selected="selected" >Nombre</option>
+                        <option value='?telefono__icontains=' >Teléfono</option>
+                    </select> 
                 </div>
             </div>
         </div>
         <!-- Tabla clientes -->
         <table *ngIf="this.datos>0" class="table table-hover table-bordered table-sm table-responsive-sm">
             <thead class="thead-dark">
-                <th>Nombre</th>
+                <th>Nombre Completos</th>
                 <th>Telefono</th>
                 <th>Acción</th>
             </thead>
@@ -98,12 +99,12 @@
                         <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                         <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarproveedor" (click)="verCliente(c.id)" >
+                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarproveedor" (click)="verProveedor(c.id)" >
                                     <i class="fas fa-edit"></i> 
                                 </button>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarproveedor" (click)="verCliente(c.id)" >
+                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarproveedor" (click)="verProveedor(c.id)" >
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
@@ -121,11 +122,9 @@
         <!-- Paginacion -->
         <nav *ngIf="this.datos>10" aria-label="...">
             <ul class="pagination pagination-sm justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <div class="fixed-bottom">
+                    <app-pagination (paginationEvent)="paginarModelo(modelo, $event)" [prev]="prev" [next]="next" [modelo]="modelo" ></app-pagination>
+                </div>
             </ul>
         </nav>
         <notifier-container></notifier-container>
