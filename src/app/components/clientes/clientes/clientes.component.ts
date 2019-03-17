@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import {ClientesService} from '../clientes.service';
 import {ApiService} from '../../../servicios/api.service';
 import { NotifierService } from 'angular-notifier';
 
