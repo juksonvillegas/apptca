@@ -95,7 +95,7 @@ export class MarcasComponent {
       }
     );
   }
-  eliminarCliente = () => {
+  eliminarMarca = () => {
     this.marca.estado = false;
     this.servicio.deleteData(this.modelo, this.marca).subscribe(
       data => {

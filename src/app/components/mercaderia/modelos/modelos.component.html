@@ -51,8 +51,8 @@
                                 <div class="form-group row">
                                     <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" data-tabindex="1" [(ngModel)]="modelo.nombre" class="form-control" id="nombre" name="nombre"  
-                                        placeholder="Nombre del modelo" value={{modelo.nombre}} autocomplete="off">
+                                        <input type="text" data-tabindex="1" [(ngModel)]="modelomodelo.nombre" class="form-control" id="nombre" name="nombre"  
+                                        placeholder="Nombre del modelo" value={{modelomodelo.nombre}} autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -61,7 +61,7 @@
                                         <div class="input-group">
                                             <input type="hidden" name="id_marca">
                                             <input type="text" class="form-control" id="marca" name="marca"  
-                                            placeholder="Nombre de la marca" readonly value={{modelo.marca.nombre}} aria-describedby="seleccionarcategoria">
+                                            placeholder="Nombre de la marca" readonly value={{modelomodelo.marca_nombre}} aria-describedby="seleccionarcategoria">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-primary" type="button" id="seleccionarcategoria" data-toggle="modal" href="#seleccionarmarca">
                                                     <i class="fas fa-search">
@@ -76,8 +76,8 @@
                                 <div class="form-group row">
                                         <label for="extendido" class="col-sm-2 col-form-label">Extendido:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" [(ngModel)]="modelo.extendido" class="form-control" id="extendido" name="nombre"  
-                                            placeholder="Nombre extendido" value={{modelo.extendido}} autocomplete="off">
+                                            <input type="text" [(ngModel)]="modelomodelo.extendido" class="form-control" id="extendido" name="nombre"  
+                                            placeholder="Nombre extendido" value={{modelomodelo.extendido}} autocomplete="off">
                                         </div>
                                     </div>
                             </form>
@@ -102,16 +102,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" name="marca" id="">
-                        <select name="marcas" size=4 id="">
-                            <option value="1">samsung</option>
-                            <option value="1">samsung</option>
-                            <option value="1">samsung</option>
-                            <option value="1">samsung</option>
-                            <option value="1">samsung</option>
-                            <option value="1">samsung</option>
-
-                        </select>
+                        <div class="form-group">
+                            <input type="text" (keyup)="buscarMarcas()" [(ngModel)]="marca_search" class="form-control" name="marca" id="">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="marcas" size=4 id="marcas">
+                                <option value={{marca.id}} *ngFor="let marca of marcas; index as i">{{marca.nombre}}</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -123,13 +121,14 @@
             <!-- FIN MODAL MARCAS -->
         <div class="row p-3">
             <div class="input-group">
-                <input autofocus (keyup)="buscarMarcas(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
+                <input autofocus (keyup)="buscarModelos(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
                 <div class="input-group-append">
                     <select class="form-control" name="params" id="params" [(ngModel)]="params">
                         <option value='?nombre__icontains=' selected="selected" >Nombre</option>
                         <option value='?marca_nombre__icontains=' selected="selected" >Marca</option>
                     </select>
                 </div>
+                {{modelomodelo.nombre}}
             </div>
         </div>
         <!-- Tabla marcas -->
@@ -150,12 +149,12 @@
                         <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                         <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarmodelo" (click)="verMarca(c.id)" >
+                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarmodelo" (click)="verModelo(c.id)" >
                                     <i class="fas fa-edit"></i> 
                                 </button>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarmodelo" (click)="verMarca(c.id)" >
+                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarmodelo" (click)="verModelo(c.id)" >
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </div>
