@@ -29,9 +29,11 @@ export class ClientesComponent {
       data => {
         this.clientes = data.results;
         this.datos = data.count;
-        const a = data.next.split('/');
-        this.next = a[4];
-        this.prev = data.previous;
+        if (data.next) {
+          const a = data.next.split('/');
+          this.next = a[4];
+          this.prev = data.previous;
+        }
       },
       error => {
         console.log(error);

@@ -13,7 +13,6 @@
                 </button>
             </div>
         </div>
-        
         <!-- MODAL ELIMINAR modelo  -->
         <div class="modal hide fade" id="eliminarmodelo" tabindex="-1"  aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -59,8 +58,8 @@
                                     <label for="marca" class="col-form-label col-sm-2">Marca:</label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
-                                            <input type="hidden" name="id_marca">
-                                            <input type="text" class="form-control" id="marca" name="marca"  
+                                            <input type="hidden" [(ngModel)]="modelomodelo.marca" name="id_marca">
+                                            <input type="text" class="form-control" id="marca" name="marca" [(ngModel)]="modelomodelo.marca_nombre"
                                             placeholder="Nombre de la marca" readonly value={{modelomodelo.marca_nombre}} aria-describedby="seleccionarcategoria">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-primary" type="button" id="seleccionarcategoria" data-toggle="modal" href="#seleccionarmarca">
@@ -106,14 +105,14 @@
                             <input type="text" (keyup)="buscarMarcas()" [(ngModel)]="marca_search" class="form-control" name="marca" id="">
                         </div>
                         <div class="form-group">
-                            <select class="form-control" name="marcas" size=4 id="marcas">
+                            <select (change)="pasarMarca($event)" class="form-control" name="marcas" size=4 id="marcas">
                                 <option value={{marca.id}} *ngFor="let marca of marcas; index as i">{{marca.nombre}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="seleccionarmarca()" >Seleccionar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="noMarca()" >Cancelar</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" >Seleccionar</button>
                     </div>
                     </div>
                 </div>
@@ -125,10 +124,9 @@
                 <div class="input-group-append">
                     <select class="form-control" name="params" id="params" [(ngModel)]="params">
                         <option value='?nombre__icontains=' selected="selected" >Nombre</option>
-                        <option value='?marca_nombre__icontains=' selected="selected" >Marca</option>
+                        <option value='?marca__nombre__icontains=' selected="selected" >Marca</option>
                     </select>
                 </div>
-                {{modelomodelo.nombre}}
             </div>
         </div>
         <!-- Tabla marcas -->

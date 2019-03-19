@@ -28,9 +28,11 @@ export class MarcasComponent {
       data => {
         this.marcas = data.results;
         this.datos = data.count;
-        const a = data.next.split('/');
-        this.next = a[4];
-        this.prev = data.previous;
+        if (data.next) {
+          const a = data.next.split('/');
+          this.next = a[4];
+          this.prev = data.previous;
+        }
       },
       error => {
         console.log(error);

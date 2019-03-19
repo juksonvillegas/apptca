@@ -21,6 +21,9 @@ export class ModelosComponent {
   term = '';
   params = '?nombre__icontains=';
   marca_search = '';
+  marca = {id: -1, nombre: ''};
+  marcaid = '';
+  marcanombre = '';
   private readonly notifier: NotifierService;
   constructor(private servicio: ApiService, notifierService: NotifierService) {
     this.notifier = notifierService;
@@ -76,6 +79,7 @@ export class ModelosComponent {
   }
   buscarModelos = () => {
     if (this.term.length >= 2) {
+      console.log(this.modelo + this.params + this.term);
       this.servicio.findData(this.modelo, this.params, this.term).subscribe(
         data => {
           // data results contiene solo el array de datos
@@ -109,13 +113,13 @@ export class ModelosComponent {
     this.servicio.updateData(this.modelo, this.modelomodelo).subscribe(
       data => {
         this.modelomodelo = data;
-        this.listaMarcas();
+        this.listaModelos();
         this.notifier.notify('success', 'Marca actualizada...OK!');
       },
       error => {
         console.log(error);
       }
-    );
+    ); 
   }
   abrirAgregarModelo = () => {
     this.modelomodelo = {id: -1, nombre: '', extendido: '', marca: -1, marca_nombre: '', estado: true};
@@ -123,13 +127,13 @@ export class ModelosComponent {
   }
   agregarModelo = () => {
     this.servicio.addData(this.modelo, this.modelomodelo).subscribe(
-      data => {
-        this.listaModelos();
-        this.notifier.notify('success', 'Modelo agregado...OK!');
-      },
-      error => {
-        console.log(error);
-      }
+    data => {
+      this.listaModelos();
+      this.notifier.notify('success', 'Modelo agregado...OK!');
+    },
+    error => {
+      console.log(error);
+    }
     );
   }
   eliminarModelo = () => {
@@ -147,8 +151,20 @@ export class ModelosComponent {
   }
   paginarModelo(modelo, $event) {
     this.data = $event;
-    this.modelomodelo = this.data.results;
+    this.modelos = this.data.results;
     this.next = this.data.next;
     this.prev = this.data.previous;
+  }
+  noMarca() {
+    this.modelomodelo.marca = -1;
+    this.modelomodelo.marca_nombre = '';
+  }
+  pasarMarca(event: Event) {
+    const seleccionado = event.target['options'];
+    const itemseleccionado = seleccionado.selectedIndex;
+    const valor = seleccionado[itemseleccionado].value;
+    const texto = seleccionado[itemseleccionado].text;
+    this.modelomodelo.marca = valor;
+    this.modelomodelo.marca_nombre = texto;
   }
 }
