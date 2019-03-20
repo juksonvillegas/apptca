@@ -22,8 +22,6 @@ export class ModelosComponent {
   params = '?nombre__icontains=';
   marca_search = '';
   marca = {id: -1, nombre: ''};
-  marcaid = '';
-  marcanombre = '';
   private readonly notifier: NotifierService;
   constructor(private servicio: ApiService, notifierService: NotifierService) {
     this.notifier = notifierService;
