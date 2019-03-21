@@ -1,3 +1,201 @@
-<p>
-  productos works!
-</p>
+<div class="row justify-content-center">
+     <div class="col-12">
+        <!-- Cabecera del formulario modelos  -->
+        <div class="row pb-2 pt-1">
+            <div class="col-auto align-self-center">
+                <h2 class="text-uppercase">Productos</h2>
+            </div>
+            <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo Productos">
+                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarproducto" (click)="abrirAgregarProducto()" >
+                    <i class="fas fa-plus">
+                        <span class="span-sm"></span>
+                    </i>
+                </button>
+            </div>
+        </div>      
+        <!-- MODAL ELIMINAR modelo  -->
+        <div class="modal hide fade" id="eliminarproducto" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">¿Eliminar Producto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Nombre: {{modelo.marca_nombre|titlecase}}-{{modelo.nombre|titlecase}}  -->
+                    Nombre:{{producto.categoria_nombre}}-{{producto.marca_nombre}}-{{producto.modelo_nombre}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarproducto()" >Eliminar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- FIN ELIMINAR modelo  -->
+        <!-- MODAL AGREGAR modelo  -->
+        <div class="modal hide fade" id="agregarproducto" tabindex="-1" aria-hidden="true" data-focus-on="input:first">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-light">
+                        <h5 class="modal-title" id="exampleModalLabel">{{accion}} Producto</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="containter-fluid">
+                            <form action="">
+                                <app-getcategoria></app-getcategoria>
+                                <!-- <div class="form-group row">
+                                    <label for="marca" class="col-form-label col-sm-2">Categoria:</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="hidden" [(ngModel)]="producto.Categoria" name="id_categoria">
+                                            <input type="text" class="form-control" id="marca" name="marca" [(ngModel)]="producto.categoria_nombre"
+                                            placeholder="Nombre de la categoria" readonly value={{producto.categoria_nombre}} aria-describedby="seleccionarcategoria">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="" data-toggle="modal" href="#seleccionarcategoria">
+                                                    <i class="fas fa-search">
+                                                        <span class="span-sm"></span>
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="form-group row">
+                                    <label for="marca" class="col-form-label col-sm-2">Modelo:</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="hidden" [(ngModel)]="producto.modelo" name="id_modelo">
+                                            <input type="text" class="form-control" id="modelo" name="modelo" [(ngModel)]="producto.modelo_nombre"
+                                            placeholder="Nombre de la marca" readonly value= {{producto.marca_nombre}} aria-describedby="seleccionarcategoria">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="" data-toggle="modal" href="#seleccionarmodelo">
+                                                    <i class="fas fa-search">
+                                                        <span class="span-sm"></span>
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="marca" class="col-form-label col-sm-2">Precio:</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="hidden" [(ngModel)]="modelomodelo.marca" name="id_marca">
+                                            <input type="text" class="form-control" id="marca" name="marca" [(ngModel)]="modelomodelo.marca_nombre"
+                                            placeholder="Nombre de la marca" readonly value={{modelomodelo.marca_nombre}} aria-describedby="seleccionarcategoria">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="button" id="" data-toggle="modal" href="#seleccionarcategoria">
+                                                    <i class="fas fa-search">
+                                                        <span class="span-sm"></span>
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-light">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" (click)="seleccionarAccion()" data-dismiss="modal" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL categorias -->
+        <div class="modal hide fade" id="seleccionarcategoria" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Seleccionar Categoria</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                      <input type="text" (keyup)="buscarCategorias()" [(ngModel)]="categoria_search" class="form-control" name="categoria" id="categoria">
+                  </div>
+                  <div class="form-group">
+                  <select (change)="pasarCategoria($event)" class="form-control" name="categorias" size=4 id="categorias">
+                    <option value={{categoria.id}} *ngFor="let categoria of categorias; index as i">{{categoria.nombre}}</option>
+                  </select>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="noCategoria()" >Cancelar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" >Seleccionar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- FIN MODAL MARCAS -->
+        <!-- BUSQUEDA 
+        <div class="row p-3">
+            <div class="input-group">
+                <input autofocus (keyup)="buscarModelos(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
+                <div class="input-group-append">
+                    <select class="form-control" name="params" id="params" [(ngModel)]="params">
+                        <option value='?nombre__icontains=' selected="selected" >Nombre</option>
+                        <option value='?marca__nombre__icontains=' selected="selected" >Marca</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- FIN BUSQUEDA -->
+        <!-- TABLA DATOS 
+        <table *ngIf="this.datos>0" class="table table-hover table-bordered table-sm table-responsive-sm">
+            <thead class="thead-dark">
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Detalles</th>
+                <th>Acción</th>
+            </thead>
+            <tbody>
+                <!-- Aca se deben servir los marcas 
+                <tr *ngFor = "let c of modelos">
+                    <td class="col-auto">{{c.nombre|titlecase}}</td>
+                    <td class="col-auto">{{c.marca_nombre|titlecase}}</td>
+                    <td class="col-auto">{{c.extendido|titlecase}}</td>
+                    <td>
+                        <!-- Falta verificar el ancho de los cols al achicar la pantalla 
+                        <div class="row">
+                            <div class="col-3">
+                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarmodelo" (click)="verModelo(c.id)" >
+                                    <i class="fas fa-edit"></i> 
+                                </button>
+                            </div>
+                            <div class="col-3">
+                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarmodelo" (click)="verModelo(c.id)" >
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- FIN TABLA DATOS -->
+        <!-- div para cuando no hay marcas 
+        <div *ngIf="!this.datos" class="col danger">
+            <!-- hacer un card para cuando no hayan registros 
+            nada para mostrar 
+        </div>
+        <!-- Paginacion 
+        <nav *ngIf="this.datos>10" aria-label="...">    
+            <div class="fixed-bottom">
+                <app-pagination (paginationEvent)="paginarModelo(modelo, $event)" [prev]="prev" [next]="next" [modelo]="modelo" ></app-pagination>
+            </div>
+        </nav>
+        <notifier-container></notifier-container>-->
+    </div>
+</div>

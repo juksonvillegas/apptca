@@ -1,0 +1,45 @@
+<div class="form-group row">
+  <label for="marca" class="col-form-label col-sm-2">{{name|titlecase}}:</label>
+  <div class="col-sm-10">
+      <div class="input-group">
+          <input type="hidden" [(ngModel)]="data.model_id" name="id_model">
+          <input type="text" class="form-control" id="model_name" name="model_name" [(ngModel)]="data.model_name"
+          placeholder="{{name}}" readonly value={{data.model_name}} aria-describedby="">
+          <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="button" id="" data-toggle="modal" href="#seleccionarmodel">
+                  <i class="fas fa-search">
+                      <span class="span-sm"></span>
+                  </i>
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- MODAL categorias -->
+<div class="modal hide fade" id="seleccionarmodel" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Seleccionar {{name|titlecase}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <input type="text" (keyup)="getModel()" [(ngModel)]="search" class="form-control" name="search" id="search">
+            </div>
+            <div class="form-group">
+            <select (change)="pasarModel($event)" class="form-control" name="models" size=4 id="models">
+            <option value={{dato.id}} *ngFor="let dato of datos; index as i">{{dato.nombre}}</option>
+            </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="noModel()" >Cancelar</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" >Seleccionar</button>
+        </div>
+        </div>
+    </div>
+</div>
+          <!-- FIN MODAL MARCAS -->

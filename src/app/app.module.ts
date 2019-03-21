@@ -17,6 +17,11 @@ import { MarcasComponent } from './components/mercaderia/marcas/marcas.component
 import { ModelosComponent } from './components/mercaderia/modelos/modelos.component';
 import { PreciosComponent } from './components/mercaderia/precios/precios.component';
 import { ProductosComponent } from './components/mercaderia/productos/productos.component';
+import { GetcategoriaComponent } from './components/shared/getcategoria/getcategoria.component';
+import { ListaComponent } from './components/proveedores/lista/lista.component';
+import { AgregarComponent } from './components/proveedores/agregar/agregar.component';
+import { EliminarComponent } from './components/proveedores/eliminar/eliminar.component';
+import { BuscadormodelComponent } from './components/shared/buscadormodel/buscadormodel.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,11 @@ import { ProductosComponent } from './components/mercaderia/productos/productos.
     ModelosComponent,
     PreciosComponent,
     ProductosComponent,
+    GetcategoriaComponent,
+    ListaComponent,
+    AgregarComponent,
+    EliminarComponent,
+    BuscadormodelComponent,
   ],
   imports: [
     BrowserModule,

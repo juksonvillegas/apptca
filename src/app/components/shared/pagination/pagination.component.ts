@@ -1,11 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {ClientesService} from '../../clientes/clientes.service';
 import {ApiService} from '../../../servicios/api.service';
 
 @Component({
   selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.css']
+  templateUrl: './pagination.component.html'
 })
 export class PaginationComponent {
   @Input() prev: string;

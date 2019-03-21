@@ -37,4 +37,8 @@ export class ApiService {
       return this.http.get(this.baserl + modelo + params + term + '',
       {headers: this.httpHeaders});
     }
+    findDataComplete(modelo: string, term: string): Observable<any> {
+      return this.http.get(this.baserl + modelo + term + '',
+      {headers: this.httpHeaders});
+    }
   }

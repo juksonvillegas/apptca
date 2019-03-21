@@ -5,128 +5,24 @@
             <div class="col-auto align-self-center">
                 <h2 class="text-uppercase">proveedores</h2>
             </div>
-            <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nuevo Proveedor">
-                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarproveedor" (click)="abrirAgregarProveedor()" > 
-                    <i class="fas fa-plus">
-                        <span class="span-sm"></span>
-                    </i>
-                </button>
-            </div>
-            <!-- MODAL ELIMINAR CLIENTE -->
-            <div class="modal fade" id="eliminarproveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">¿Eliminar Cliente?</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Nombre: {{proveedor.nombre|titlecase}}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarProveedor()" >Eliminar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <!-- FIN ELIMINAR CLIENTE -->
-            <!-- MODAL AGREGAR CLIENTE -->
-            <div class="modal fade" id="agregarproveedor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark text-light">
-                            <h5 class="modal-title" id="exampleModalLabel">{{accion}} Proveedor</h5>
-                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="containter-fluid">
-                                <form action="">
-                                    <div class="form-group row">
-                                        <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" [(ngModel)]="proveedor.nombre" class="form-control" id="nombre" name="nombre"  
-                                            placeholder="Nombre del proveedor" value={{proveedor.nombre}} autocomplete="off">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="telefono" class="col-sm-2 col-form-label">Télefono:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" [(ngModel)]="proveedor.telefono" class="form-control" id="telefono" name="telefono"
-                                            placeholder="Número de celular" value={{proveedor.telefono}} mask="000000000" autocomplete="off">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer bg-light">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" (click)="seleccionarAccion()" data-dismiss="modal" class="btn btn-success">Guardar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- FIN AGREGAR CLIENTE -->
         </div>
-        <div class="row p-3">
-            <div class="input-group">
-                <input autofocus (keyup)="buscarClientes(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
-                <div class="input-group-append">
-                    <select class="form-control" name="params" id="params" [(ngModel)]="params">
-                        <option value='?nombre__icontains=' selected="selected" >Nombre</option>
-                        <option value='?telefono__icontains=' >Teléfono</option>
-                    </select> 
-                </div>
+        <div class="row bg-light">
+            <div class="col-12">
+                <ul class="nav nav-pills pt-2 pb-2">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='ver' routerLinkActive="active">Lista</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='agregar' routerLinkActive="active">Agregar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='eliminar/1' routerLinkActive="active">eliminar</a>
+                </li>
+                </ul>
             </div>
         </div>
-        <!-- Tabla clientes -->
-        <table *ngIf="this.datos>0" class="table table-hover table-bordered table-sm table-responsive-sm">
-            <thead class="thead-dark">
-                <th>Nombre Completos</th>
-                <th>Telefono</th>
-                <th>Acción</th>
-            </thead>
-            <tbody>
-                <!-- Aca se deben servir los clientes -->
-                <tr *ngFor = "let c of proveedores">
-                    <td class="col-auto">{{c.nombre|titlecase}}</td>
-                    <td *ngIf="c.telefono; else telefono">{{c.telefono}}</td>
-                    <td>
-                        <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
-                        <div class="row">
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarproveedor" (click)="verProveedor(c.id)" >
-                                    <i class="fas fa-edit"></i> 
-                                </button>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarproveedor" (click)="verProveedor(c.id)" >
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                    <ng-template #telefono><td>NO</td></ng-template>
-                </tr>
-            </tbody>
-        </table>
-        <!-- div para cuando no hay clientes -->
-        <div *ngIf="!this.datos" class="col danger">
-            <!-- hacer un card para cuando no hayan registros -->
-            nada para mostrar 
-        </div>
-        <!-- Paginacion -->
-        <nav *ngIf="this.datos>10" aria-label="...">
-            <ul class="pagination pagination-sm justify-content-center">
-                <div class="fixed-bottom">
-                    <app-pagination (paginationEvent)="paginarModelo(modelo, $event)" [prev]="prev" [next]="next" [modelo]="modelo" ></app-pagination>
-                </div>
-            </ul>
-        </nav>
-        <notifier-container></notifier-container>
     </div>
+        <div class="col-sm-12">
+            <router-outlet></router-outlet>
+        </div>
 </div>

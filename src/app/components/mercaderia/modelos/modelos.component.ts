@@ -117,7 +117,7 @@ export class ModelosComponent {
       error => {
         console.log(error);
       }
-    ); 
+    );
   }
   abrirAgregarModelo = () => {
     this.modelomodelo = {id: -1, nombre: '', extendido: '', marca: -1, marca_nombre: '', estado: true};
