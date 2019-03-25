@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-sm-12">
+        <app-buscadormodel (busquedaEvent)="buscar($event)" [params]="params" [modelo]="modelo" ></app-buscadormodel>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+            <table *ngIf="this.datos>0" class="table table-hover table-bordered table-sm table-responsive-sm">
+                    <thead class="thead-light">
+                        <th>Nombre Completos</th>
+                        <th>Telefono</th>
+                        <th>DNI</th>
+                        <th>Nacimiento</th>
+                        <th>Sexo</th>
+                        <th>M.</th>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <!-- Aca se deben servir los clientes -->
+                        <tr *ngFor = "let c of lista">
+                            <td class="col-auto">{{c.nombre|titlecase}}</td>
+                            <td *ngIf="c.telefono; else telefono">{{c.telefono}}</td>
+                            <td *ngIf="c.dni; else dni">{{c.dni}}</td>
+                            <td class="col-auto">{{c.nacimiento|date:'dd/MM/yyyy'}}</td>
+                            <td *ngIf="c.sexo; else sexo">Hombre</td>
+                            <td *ngIf="c.mayorista; else mayorista">SI</td>
+                            <td>
+                                <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
+                                <div class="row">
+                                    <div class="col-3">
+                                        <a class="btn btn-success" routerLink='/clientes/editar/{{c.id}}' >
+                                            <i class="fas fa-edit"></i> 
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <a class="btn btn-danger" routerLink='/clientes/eliminar/{{c.id}}' >
+                                            <i class="fas fa-trash-alt"></i> 
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <ng-template #mayorista><td>NO</td></ng-template>
+                            <ng-template #dni><td>NO</td></ng-template>
+                            <ng-template #sexo><td>Mujer</td></ng-template>
+                            <ng-template #telefono><td>NO</td></ng-template>
+                        </tr>
+                    </tbody>
+                </table>
+    </div>
+</div>
+<nav *ngIf="this.datos>10" aria-label="...">
+    <ul class="pagination pagination-sm justify-content-center">
+        <div class="fixed-bottom">
+            <app-pagination (paginationEvent)="paginarModelo(modelo, $event)" [prev]="prev" [next]="next" [modelo]="modelo" ></app-pagination>
+        </div>
+    </ul>
+    <notifier-container></notifier-container>
+</nav>

@@ -2,7 +2,7 @@
   <div class="input-group">
       <input autofocus (keyup.enter)="buscarModel()" [(ngModel)]="term" id="txtbuscar" type="text" class="form-control" placeholder="Ingrese texto a buscar">
       <div class="input-group-append">
-          <select class="form-control" name="params" id="params">
+          <select [(ngModel)]="selected"  class="form-control" name="params" id="params">
                 <option value="{{param.value}}" *ngFor="let param of params">{{param.text}}</option>
           </select>
       </div>

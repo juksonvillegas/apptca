@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../../../servicios/api.service';
-import { NotifierService } from '../../../../../node_modules/angular-notifier';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-marcas',

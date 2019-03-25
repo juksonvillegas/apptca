@@ -7,8 +7,7 @@ import { AppComponent } from './app.component';
 import { NavbarUserComponent } from './components/shared/navbar-user/navbar-user.component';
 import { ClientesComponent } from './components/clientes/clientes/clientes.component';
 import { APP_ROUTES } from './app.routes';
-import { HttpClientModule } from '../../node_modules/@angular/common/http';
-import { Options } from '../../node_modules/@types/selenium-webdriver/firefox';
+import { HttpClientModule } from '@angular/common/http';
 import { ProveedoresComponent } from './components/proveedores/proveedores.component';
 import { PaginationComponent } from './components/shared/pagination/pagination.component';
 import { MercaderiaComponent } from './components/mercaderia/mercaderia.component';
@@ -18,10 +17,16 @@ import { ModelosComponent } from './components/mercaderia/modelos/modelos.compon
 import { PreciosComponent } from './components/mercaderia/precios/precios.component';
 import { ProductosComponent } from './components/mercaderia/productos/productos.component';
 import { GetcategoriaComponent } from './components/shared/getcategoria/getcategoria.component';
-import { ListaComponent } from './components/proveedores/lista/lista.component';
-import { AgregarComponent } from './components/proveedores/agregar/agregar.component';
-import { EliminarComponent } from './components/proveedores/eliminar/eliminar.component';
+import { ProveedoresListaComponent } from './components/proveedores/lista/lista.component';
+import { ProveedoresAgregarComponent } from './components/proveedores/agregar/agregar.component';
+import { ProveedoresEliminarComponent } from './components/proveedores/eliminar/eliminar.component';
 import { BuscadormodelComponent } from './components/shared/buscadormodel/buscadormodel.component';
+import { ClientesListaComponent } from './components/clientes/lista/lista.component';
+import { ClientesEliminarComponent } from './components/clientes/eliminar/eliminar.component';
+import { AddeditClientesComponent } from './components/clientes/addedit/addedit.component';
+import { AddeditProveedoresComponent } from './components/proveedores/addedit/addedit.component';
+import { ListaCategoriasComponent } from './components/mercaderia/categorias/lista/lista.component';
+import { AddeditCategoriasComponent } from './components/mercaderia/categorias/addedit/addedit.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +42,17 @@ import { BuscadormodelComponent } from './components/shared/buscadormodel/buscad
     PreciosComponent,
     ProductosComponent,
     GetcategoriaComponent,
-    ListaComponent,
-    AgregarComponent,
-    EliminarComponent,
+    ProveedoresComponent,
+    ProveedoresListaComponent,
+    ProveedoresAgregarComponent,
+    ProveedoresEliminarComponent,
     BuscadormodelComponent,
+    ClientesListaComponent,
+    ClientesEliminarComponent,
+    AddeditClientesComponent,
+    AddeditProveedoresComponent,
+    ListaCategoriasComponent,
+    AddeditCategoriasComponent
   ],
   imports: [
     BrowserModule,

@@ -1,34 +1,29 @@
 import { Component, Input } from '@angular/core';
 import { NotifierService } from 'angular-notifier';
-import { ApiService } from '../../../servicios/api.service';
+import { ApiService } from '../../../../servicios/api.service';
 
 @Component({
-  selector: 'app-lista-proveedores',
+  selector: 'app-lista-categorias',
   templateUrl: './lista.component.html',
-  providers : [ApiService]
+  styles: []
 })
-export class ProveedoresListaComponent {
-  modelo = 'proveedores/';
+export class ListaCategoriasComponent {
+  modelo = 'categorias/';
   datos = 0;
   @Input() lista = [];
   @Input() data: any = [];
   @Input() next: string;
   @Input() prev: string;
-  proveedor = {id: -1, nombre: '', telefono: '', dni: '', mayorista: false,
-  proveedor: true, sexo: true, estado: true };
-  accion = '';
   term = '';
   params = [
     {text: 'Nombre', value: '?nombre__icontains='},
-    {text: 'DNI', value: '?dni__icontains='},
-    {text: 'Telefono', value: '?telefono__icontains='}
   ];
   private readonly notifier: NotifierService;
   constructor(private servicio: ApiService, notifierService: NotifierService) {
     this.notifier = notifierService;
-    this.listaProveedores();
+    this.listaCategorias();
   }
-  listaProveedores = () => {
+  listaCategorias = () => {
     this.servicio.getData(this.modelo, '').subscribe(
       data => {
         this.lista = data.results;
@@ -55,6 +50,6 @@ export class ProveedoresListaComponent {
     if (this.data.count > 0) {
       this.lista = this.data.results;
       this.data = [];
-    } else { this.listaProveedores(); }
+    } else { this.listaCategorias(); }
   }
 }

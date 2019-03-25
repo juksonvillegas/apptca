@@ -8,24 +8,31 @@
                 <th>Nombre Completos</th>
                 <th>Telefono</th>
                 <th>Acción</th>
+                <th></th>
+                <th></th>
             </thead>
             <tbody>
                 <!-- Aca se deben servir los clientes -->
-                <tr *ngFor = "let c of proveedores">
+                <tr *ngFor = "let c of lista">
                     <td class="col-auto">{{c.nombre|titlecase}}</td>
                     <td *ngIf="c.telefono; else telefono">{{c.telefono}}</td>
                     <td>
                         <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                         <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarproveedor" (click)="verProveedor(c.id)" >
+                                <a class="btn btn-success" routerLink='/proveedores/editar/{{c.id}}' >
                                     <i class="fas fa-edit"></i> 
-                                </button>
+                                </a>
                             </div>
+                            
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
                             <div class="col-3">
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarproveedor" (click)="verProveedor(c.id)" >
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
+                                <a class="btn btn-danger" routerLink='/proveedores/eliminar/{{c.id}}' >
+                                    <i class="fas fa-trash-alt"></i> 
+                                </a>
                             </div>
                         </div>
                     </td>

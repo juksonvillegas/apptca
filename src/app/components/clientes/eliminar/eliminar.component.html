@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header bg-danger text-white">
+    Eliminar Cliente
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{dato.nombre|titlecase}}</h5>
+    <ul class="list-group mb-3">
+      <li class="list-group-item">Nacimiento: {{dato.nacimiento|date:'dd/MM/yyyy'}}</li>
+        <li class="list-group-item">Teléfono: {{dato.telefono}}</li>
+        <li *ngIf="dato.dni; else dni" class="list-group-item">DNI: {{dato.dni}}</li>
+        <li *ngIf="dato.sexo; else sexo" class="list-group-item">Sexo: Hombre</li>
+        <li *ngIf="dato.mayorista; else mayorista" class="list-group-item">Mayorista: Si</li>
+      </ul>
+    <button class="btn btn-danger">
+      Eliminar
+    </button>
+  </div>
+  <ng-template #mayorista><td><li class="list-group-item">Mayorista: No</li></td></ng-template>
+  <ng-template #dni><td><li class="list-group-item">DNI: No</li> </td></ng-template>
+  <ng-template #sexo><td><li class="list-group-item">Sexo: Mujer</li></td></ng-template>
+  <ng-template #telefono><td>NO</td></ng-template>
+</div>

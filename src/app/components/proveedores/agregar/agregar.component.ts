@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-agregar',
+  selector: 'app-agregar-proveedores',
   templateUrl: './agregar.component.html',
   styles: []
 })
-export class AgregarComponent implements OnInit {
+export class ProveedoresAgregarComponent implements OnInit {
 
   constructor() { }
 
