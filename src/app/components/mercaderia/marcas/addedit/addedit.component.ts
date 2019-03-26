@@ -7,8 +7,8 @@ import { ApiService } from '../../../../servicios/api.service';
   selector: 'app-addedit',
   templateUrl: './addedit.component.html'
 })
-export class AddeditCategoriasComponent {
-  modelo = 'categorias/';
+export class AddeditMarcasComponent {
+  modelo = 'marcas/';
   id = '';
   dato = {nombre: '' };
   private readonly notifier: NotifierService;
@@ -16,8 +16,8 @@ export class AddeditCategoriasComponent {
     private rutaActiva: ActivatedRoute,
     private router: Router,
     notifierService: NotifierService) {
-    this.notifier = notifierService;
-    this.CargarDatos();
+      this.notifier = notifierService;
+      this.CargarDatos();
   }
   CargarDatos() {
     this.id = this.rutaActiva.snapshot.params.id;
@@ -28,7 +28,7 @@ export class AddeditCategoriasComponent {
         },
         error => {
           if (error.status === 404) {
-            this.router.navigateByUrl('/productos/categorias/ver');
+            this.router.navigateByUrl('/productos/marcas/ver');
           } else { console.log(error); }
         }
       );
@@ -42,7 +42,7 @@ export class AddeditCategoriasComponent {
   editar() {
     this.servicio.updateData(this.modelo, this.dato).subscribe(
       data => {
-        this.router.navigateByUrl('/productos/categorias/ver');
+        this.router.navigateByUrl('/productos/marcas/ver');
         this.notifier.notify('success', 'Registro actualizado...OK!');
       },
       error => {
@@ -53,7 +53,7 @@ export class AddeditCategoriasComponent {
   agregar() {
     this.servicio.addData(this.modelo, this.dato).subscribe(
       data => {
-        this.router.navigateByUrl('/productos/categorias/ver');
+        this.router.navigateByUrl('/productos/marcas/ver');
         this.notifier.notify('success', 'Registro agregado...OK!');
       },
       error => {
@@ -61,4 +61,5 @@ export class AddeditCategoriasComponent {
       }
     );
   }
+
 }

@@ -1,119 +1,26 @@
-<div class="row justify-content-center">
+<div class="row justify-content-center"> 
      <div class="col-12">
-        <!-- Cabecera del formulario marcas -->
+        <!-- Cabecera del formulario clientes -->
         <div class="row pb-2 pt-1">
             <div class="col-auto align-self-center">
                 <h2 class="text-uppercase">Marcas</h2>
             </div>
-            <div class="col-auto p-1 align-content-center" data-toggle="tooltip" data-placement="bottom" title="Agregar nueva Marca">
-                <button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#agregarmarca" (click)="abrirAgregarMarca()" >
-                    <i class="fas fa-plus">
-                        <span class="span-sm"></span>
-                    </i>
-                </button>
-            </div>
-            <!-- MODAL ELIMINAR marca -->
-            <div class="modal fade" id="eliminarmarca" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">¿Eliminar Marca?</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      Nombre: {{marca.nombre|titlecase}}
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="eliminarmarca()" >Eliminar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <!-- FIN ELIMINAR marca -->
-            <!-- MODAL AGREGAR marca -->
-            <div class="modal fade" id="agregarmarca" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark text-light">
-                            <h5 class="modal-title" id="exampleModalLabel">{{accion}} Marca</h5>
-                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="containter-fluid">
-                                <form action="">
-                                    <div class="form-group row">
-                                        <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" [(ngModel)]="marca.nombre" class="form-control" id="nombre" name="nombre"  
-                                            placeholder="Nombre de la marca" value={{marca.nombre}} autocomplete="off">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer bg-light">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" (click)="seleccionarAccion()" data-dismiss="modal" class="btn btn-success">Guardar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- FIN AGREGAR marca -->
-        </div>
-        <div class="row p-3">
-            <div class="input-group">
-                <input autofocus (keyup)="buscarMarcas(term)" id="txtbuscar" [(ngModel)]="term" type="text" class="form-control" placeholder="Ingrese texto a buscar">
-                <div class="input-group-append">
-                    <select class="form-control" name="params" id="params" [(ngModel)]="params">
-                        <option value='?nombre__icontains=' selected="selected" >Nombre</option>
-                    </select>
-                </div>
+        </div> 
+        <div class="row bg-light">
+            <div class="col-12">
+                <ul class="nav nav-pills pt-2 pb-2">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='/productos/marcas/agregar' routerLinkActive="active">Agregar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink='/productos/marcas/ver' routerLinkActive="active">Lista</a>
+                </li>
+                </ul>
             </div>
         </div>
-        <!-- Tabla marcas -->
-        <table *ngIf="this.datos>0" class="table table-hover table-bordered table-sm table-responsive-sm">
-            <thead class="thead-dark">
-                <th>Nombre</th>
-                <th>Acción</th>
-            </thead>
-            <tbody>
-                <!-- Aca se deben servir los marcas -->
-                <tr *ngFor = "let c of marcas">
-                    <td class="col-auto">{{c.nombre|titlecase}}</td>
-                    <td>
-                        <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
-                        <div class="row">
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#agregarmarca" (click)="verMarca(c.id)" >
-                                    <i class="fas fa-edit"></i> 
-                                </button>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#eliminarmarca" (click)="verMarca(c.id)" >
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <!-- div para cuando no hay marcas -->
-        <div *ngIf="!this.datos" class="col danger">
-            <!-- hacer un card para cuando no hayan registros -->
-            nada para mostrar 
         </div>
-        <!-- Paginacion -->
-        <nav *ngIf="this.datos>10" aria-label="...">    
-            <div class="fixed-bottom">
-                <app-pagination (paginationEvent)="paginarModelo(modelo, $event)" [prev]="prev" [next]="next" [modelo]="modelo" ></app-pagination>
-            </div>
-        </nav>
-        <notifier-container></notifier-container>
+    <div class="col-sm-12">
+        <router-outlet></router-outlet>
     </div>
+    <notifier-container></notifier-container>
 </div>

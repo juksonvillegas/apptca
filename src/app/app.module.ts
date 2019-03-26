@@ -27,6 +27,13 @@ import { AddeditClientesComponent } from './components/clientes/addedit/addedit.
 import { AddeditProveedoresComponent } from './components/proveedores/addedit/addedit.component';
 import { ListaCategoriasComponent } from './components/mercaderia/categorias/lista/lista.component';
 import { AddeditCategoriasComponent } from './components/mercaderia/categorias/addedit/addedit.component';
+import { EliminarCategoriasComponent } from './components/mercaderia/categorias/eliminar/eliminar.component';
+import { AddeditMarcasComponent } from './components/mercaderia/marcas/addedit/addedit.component';
+import { EliminarMarcasComponent } from './components/mercaderia/marcas/eliminar/eliminar.component';
+import { ListaMarcasComponent } from './components/mercaderia/marcas/lista/lista.component';
+import { ListaModelosComponent } from './components/mercaderia/modelos/lista/lista.component';
+import { EliminarModelosComponent } from './components/mercaderia/modelos/eliminar/eliminar.component';
+import { AddeditModelosComponent } from './components/mercaderia/modelos/addedit/addedit.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +59,14 @@ import { AddeditCategoriasComponent } from './components/mercaderia/categorias/a
     AddeditClientesComponent,
     AddeditProveedoresComponent,
     ListaCategoriasComponent,
-    AddeditCategoriasComponent
+    AddeditCategoriasComponent,
+    EliminarCategoriasComponent,
+    AddeditMarcasComponent,
+    EliminarMarcasComponent,
+    ListaMarcasComponent,
+    ListaModelosComponent,
+    AddeditModelosComponent,
+    EliminarModelosComponent
   ],
   imports: [
     BrowserModule,

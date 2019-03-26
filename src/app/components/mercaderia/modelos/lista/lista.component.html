@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
     <div class="col-sm-12">
         <app-buscadormodel (busquedaEvent)="buscar($event)" [params]="params" [modelo]="modelo" ></app-buscadormodel>
     </div>
@@ -7,19 +7,23 @@
     <div class="col-12">
             <table *ngIf="this.datos>0" class="table table-hover table-bordered table-sm table-responsive-sm">
                 <thead class="thead-light">
+                    <th>Marca</th>
                     <th>Nombre</th>
+                    <th>Extendido</th>
                     <th></th>
                     <th></th>
                 </thead>
                 <tbody>
                     <!-- Aca se deben servir los clientes -->
                     <tr *ngFor = "let c of lista">
+                        <td class="col-auto">{{c.marca_nombre|titlecase}}</td>
                         <td class="col-auto">{{c.nombre|titlecase}}</td>
+                        <td class="col-auto">{{c.extendido|titlecase}}</td>
                         <td>
                             <!-- Falta verificar el ancho de los cols al achicar la pantalla -->
                             <div class="row">
                                 <div class="col-3">
-                                    <a class="btn btn-success" routerLink='/productos/categorias/editar/{{c.id}}' >
+                                    <a class="btn btn-success" routerLink='/productos/marcas/editar/{{c.id}}' >
                                         <i class="fas fa-edit"></i> 
                                     </a>
                                 </div>
@@ -29,7 +33,7 @@
                         <td>
                             <div class="row">
                                 <div class="col-3">
-                                    <a class="btn btn-danger" routerLink='/productos/categorias/eliminar/{{c.id}}' >
+                                    <a class="btn btn-danger" routerLink='/productos/marcas/eliminar/{{c.id}}' >
                                         <i class="fas fa-trash-alt"></i> 
                                     </a>
                                 </div>

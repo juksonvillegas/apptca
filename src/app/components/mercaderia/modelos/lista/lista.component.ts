@@ -3,11 +3,12 @@ import { NotifierService } from 'angular-notifier';
 import { ApiService } from '../../../../servicios/api.service';
 
 @Component({
-  selector: 'app-lista-categorias',
-  templateUrl: './lista.component.html'
+  selector: 'app-lista',
+  templateUrl: './lista.component.html',
+  styles: []
 })
-export class ListaCategoriasComponent {
-  modelo = 'categorias/';
+export class ListaModelosComponent {
+  modelo = 'modelos/';
   datos = 0;
   @Input() lista = [];
   @Input() data: any = [];
@@ -16,13 +17,14 @@ export class ListaCategoriasComponent {
   term = '';
   params = [
     {text: 'Nombre', value: '?nombre__icontains='},
+    {text: 'Marca', value: '?marca__nombre__icontains='}
   ];
   private readonly notifier: NotifierService;
   constructor(private servicio: ApiService, notifierService: NotifierService) {
     this.notifier = notifierService;
-    this.listaCategorias();
+    this.listaModelos();
   }
-  listaCategorias = () => {
+  listaModelos = () => {
     this.servicio.getData(this.modelo, '').subscribe(
       data => {
         this.lista = data.results;
@@ -49,6 +51,6 @@ export class ListaCategoriasComponent {
     if (this.data.count > 0) {
       this.lista = this.data.results;
       this.data = [];
-    } else { this.listaCategorias(); }
+    } else { this.listaModelos(); }
   }
 }
